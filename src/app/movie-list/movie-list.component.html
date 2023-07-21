@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+      <div *ngFor="let outerArry of movieList" class="col col-md-3">
+          <div *ngFor="let movie of outerArry" class="recentMovies">
+              <div id="movieList" class="card">
+                  <img class="card-img-top" src={{movie.url}} alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title">{{movie.name}}</h5>
+                      <p class="card-text">{{movie.location}}</p>
+                      <p class="card-text movieDate">{{movie.date}}</p>
+                  </div>
+                <button class="btn btn-danger" (click)="bookTicket()">Book tickets</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

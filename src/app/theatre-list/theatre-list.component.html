@@ -1,0 +1,78 @@
+<div class="row">
+  <h2 class="col-md-10" style="padding: 10px;margin-left: 40px;">Theater</h2>
+  <button
+    style="margin: 10px; padding: 10px; float: right"
+    type="button"
+    class="btn btn-primary"
+    (click)="openPopup()">Add Theater
+  </button>
+</div>
+
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Theater</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="movieForm" (keyup.enter)="updateMovieList()">
+          <div class="form-group">
+            <label for="movieName">Theater Name</label>
+            <input type="text" formControlName="name" class="form-control" id="movieName" placeholder="Enter Movie Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="movieUrl">Theater Picture URL</label>
+            <input type="text"  formControlName="url" class="form-control" id="movieUrl" placeholder="Enter Movie Picture URL" required>
+          </div>
+          <div class="form-group">
+            <label for="location">Theater Location</label>
+            <input type="text"  formControlName="location" class="form-control" id="location" placeholder="Enter Movie Location" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="!movieForm.valid" (keyup.enter)="updateMovieList()" (click)="updateMovieList()" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-danger"
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">First</th>
+    <th scope="col">Last</th>
+    <th scope="col">Handle</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+    <td>Otto</td>
+    <td>@mdo</td>
+  </tr>
+  <tr>
+    <th scope="row">2</th>
+    <td>Jacob</td>
+    <td>Thornton</td>
+    <td>@fat</td>
+  </tr>
+  <tr>
+    <th scope="row">3</th>
+    <td>Larry</td>
+    <td>the Bird</td>
+    <td>@twitter</td>
+  </tr>
+  </tbody>
+</table>
