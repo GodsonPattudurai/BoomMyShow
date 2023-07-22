@@ -11,7 +11,7 @@ import {CommonServiceService} from "../services/common-service.service";
 export class HeaderComponent implements OnInit {
   user: IUser;
   cityList: any;
-  selectedCity: any;
+  selectedCity: any = {};
   constructor(private router: Router, private cognitoService: CognitoService, private commonserviceService: CommonServiceService) {
     this.user = {} as IUser;
   }
@@ -57,5 +57,9 @@ export class HeaderComponent implements OnInit {
   changeCity(d: any) {
     this.selectedCity = d;
     localStorage.setItem('SELECTED_CITY', JSON.stringify(this.selectedCity));
+  }
+
+  addScreen() {
+    this.router.navigate(["app/screen-list"]);
   }
 }

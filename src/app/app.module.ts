@@ -21,6 +21,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {CommonServiceService} from "./services/common-service.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ScreenComponent } from './screen/screen.component';
+import { ScreenListComponent } from './screen-list/screen-list.component';
+import { ShowComponent } from './show/show.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import {HttpClientModule} from "@angular/common/http";
     SignInComponent,
     ProfileComponent,
     LandingPageComponent,
+    ScreenComponent,
+    ScreenListComponent,
+    ShowComponent,
   ],
   imports: [
     BrowserModule,

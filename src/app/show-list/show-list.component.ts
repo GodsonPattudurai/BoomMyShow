@@ -17,47 +17,20 @@ import { CommonServiceService } from '../services/common-service.service';
 })
 export class ShowListComponent implements OnInit {
 
-  // @ts-ignore
-  movieForm: FormGroup;
-  movieList: any;
-
-  constructor(private fb: FormBuilder, private router: Router, private commonserviceService: CommonServiceService) { }
+  showList: any;
+  constructor(private router: Router, private commonserviceService: CommonServiceService) { }
 
   ngOnInit() {
-    this.movieList =  this.commonserviceService.getMovieListName();
-    console.log(this.movieList);
-    console.log(JSON.stringify('list---'+this.movieList))
-    this.buildForm();
+    this.load();
   }
 
-  buildForm() {
-    this.movieForm = this.fb.group({
-      url: '',
-      name: '',
-      location: '',
-      date: '',
+  load(){
+    this.commonserviceService.getAll('show?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+      this.showList = data.content;
     });
-
   }
 
-  updateMovieList() {
-    //console.log('value-->'+ JSON.stringify(this.movieForm.value))
-    this.commonserviceService.addNewMovie(this.movieForm.value);
-  }
-  backToHome() {
-    this.router.navigate(["/home"]);
-  }
-  deleteMovie(index: any) {
-    this.commonserviceService.deleteMovie(index);
-    this.movieList =  this.commonserviceService.getMovieListName();
-  }
-
-  displayStyle = "none";
-
-  openPopup() {
-    this.displayStyle = "block";
-  }
-  closePopup() {
-    this.displayStyle = "none";
+  addShow() {
+    this.router.navigate(["app/show"]);
   }
 }

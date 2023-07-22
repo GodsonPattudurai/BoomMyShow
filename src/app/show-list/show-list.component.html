@@ -1,47 +1,29 @@
-<button
-  style="margin: 50px; padding: 10px; float: right"
-  type="button"
-  class="btn btn-primary"
-  (click)="openPopup()">Add Movie
-</button>
-<div
-  class="modal"
-  tabindex="-1"
-  role="dialog"
-  [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Add New Movie</h4>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="movieForm" (keyup.enter)="updateMovieList()">
-          <div class="form-group">
-            <label for="movieName">Movie Name</label>
-            <input type="text" formControlName="name" class="form-control" id="movieName" placeholder="Enter Movie Name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="movieUrl">Movie Picture URL</label>
-            <input type="text"  formControlName="url" class="form-control" id="movieUrl" placeholder="Enter Movie Picture URL" required>
-          </div>
-          <div class="form-group">
-            <label for="location">Movie Location</label>
-            <input type="text"  formControlName="location" class="form-control" id="location" placeholder="Enter Movie Location" required>
-          </div>
-          <div class="form-group">
-            <label for="movieDate">Movie Date</label>
-            <input type="text"  formControlName="date" class="form-control" id="movieDate" placeholder="Enter Movie Date" required>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" [disabled]="!movieForm.valid" (keyup.enter)="updateMovieList()" (click)="updateMovieList()" class="btn btn-primary">Add</button>
-        <button type="button" class="btn btn-danger"
-                (click)="closePopup()">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
+<div class="row">
+  <h2 class="col-md-10" style="padding: 10px;margin-left: 40px;">Show</h2>
+  <button
+    style="margin: 10px; padding: 10px; float: right"
+    type="button"
+    class="btn btn-primary"
+    (click)="addShow()">Add Show
+  </button>
 </div>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Theater</th>
+    <th scope="col">Screen</th>
+    <th scope="col">Movie</th>
+    <th scope="col">Start Date</th>
+    <th scope="col">End Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let t of showList">
+    <th scope="row">{{t.theaterDisplayName}}</th>
+    <td>{{t.screenName}}</td>
+    <td>{{t.movieTitle}}</td>
+    <td>{{t.startTs  | date: 'dd/MM/yyyy'}}</td>
+    <td>{{t.endTs  | date: 'dd/MM/yyyy'}}</td>
+  </tr>
+  </tbody>
+</table>

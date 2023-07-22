@@ -7,23 +7,16 @@ import {Router} from "@angular/router";
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss']
 })
-export class MovieListComponent implements OnInit, DoCheck {
+export class MovieListComponent implements OnInit {
 
   // @ts-ignore
-  movieList: Array<any>;
+  movieList: any = [];
   constructor(public commonserviceService: CommonServiceService, private router: Router) { }
 
   ngOnInit() {
-    this.commonserviceService.updateMessage.subscribe(
-      (message)=>{
-        console.log('message in movie list component--'+message)
-      }
-    );
-  }
-
-  ngDoCheck() {
-    //getting movie from common service
-    this.movieList = this.commonserviceService.getMovieList();
+    this.commonserviceService.getAll('movie?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+      this.movieList = data.content;
+    });
   }
 
   bookTicket() {

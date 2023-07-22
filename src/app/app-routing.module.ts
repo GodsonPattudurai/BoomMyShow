@@ -10,6 +10,9 @@ import {SignUpComponent} from "./sign-up/sign-up.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
+import {ScreenListComponent} from "./screen-list/screen-list.component";
+import {ScreenComponent} from "./screen/screen.component";
+import {ShowComponent} from "./show/show.component";
 
 const routes: Routes = [
   {
@@ -31,7 +34,10 @@ const routes: Routes = [
   },
   {path: 'app', component: LandingPageComponent, children: [
       {path: 'home', component: HomeComponent},
+      {path: 'show', component: ShowComponent},
       {path: 'show-list', component: ShowListComponent},
+      {path: 'screen', component: ScreenComponent},
+      {path: 'screen-list', component: ScreenListComponent},
       {path: 'theater-list', component: TheatreListComponent},
       {path: 'booking-history', component: BookingHistoryComponent},
       {path: 'book-ticket', component: BookTicketComponent},
