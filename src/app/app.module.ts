@@ -15,10 +15,17 @@ import { SelectSeatComponent } from './select-seat/select-seat.component';
 import { TheatreListComponent } from './theatre-list/theatre-list.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileComponent,
+    SignInComponent,
+    SignUpComponent,
     HeaderComponent,
     LowerBannerSlideComponent,
     MovieListComponent,
@@ -30,6 +37,10 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     TheatreListComponent,
     BookingHistoryComponent,
     BookTicketComponent,
+    SignUpComponent,
+    SignInComponent,
+    ProfileComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

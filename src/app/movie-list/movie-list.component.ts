@@ -27,7 +27,7 @@ export class MovieListComponent implements OnInit, DoCheck {
   }
 
   bookTicket() {
-    this.router.navigate(["/book-ticket"]);
+    this.router.navigate(["app/book-ticket"]);
   }
 
 }

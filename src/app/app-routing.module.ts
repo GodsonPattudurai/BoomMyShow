@@ -6,15 +6,41 @@ import {SelectSeatComponent} from "./select-seat/select-seat.component";
 import {TheatreListComponent} from "./theatre-list/theatre-list.component";
 import {BookingHistoryComponent} from "./booking-history/booking-history.component";
 import {BookTicketComponent} from "./book-ticket/book-ticket.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
 
 const routes: Routes = [
-  { path: 'user/:id', component: HomeComponent},
-  {path: 'show-list', component: ShowListComponent},
-  {path: 'theater-list', component: TheatreListComponent},
-  {path: 'booking-history', component: BookingHistoryComponent},
-  {path: 'book-ticket', component: BookTicketComponent},
-  {path: 'select-seat', component: SelectSeatComponent},
-  { path: "**", component: HomeComponent }
+  {
+    path: '',
+    redirectTo: 'app/home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'signIn',
+    component: SignInComponent,
+  },
+  {
+    path: 'signUp',
+    component: SignUpComponent,
+  },
+  {path: 'app', component: LandingPageComponent, children: [
+      {path: 'home', component: HomeComponent},
+      {path: 'show-list', component: ShowListComponent},
+      {path: 'theater-list', component: TheatreListComponent},
+      {path: 'booking-history', component: BookingHistoryComponent},
+      {path: 'book-ticket', component: BookTicketComponent},
+      {path: 'select-seat', component: SelectSeatComponent}
+  ]},
+  {
+    path: '**',
+    redirectTo: 'app/home',
+  }
 ];
 
 @NgModule({

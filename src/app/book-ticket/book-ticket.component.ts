@@ -9,6 +9,6 @@ import {Router} from "@angular/router";
 export class BookTicketComponent {
   constructor(private router: Router) { }
   selectSeat() {
-    this.router.navigate(["/select-seat"]);
+    this.router.navigate(["app/select-seat"]);
   }
 }

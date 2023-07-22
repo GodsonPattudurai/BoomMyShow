@@ -38,7 +38,7 @@ export class TheatreListComponent implements OnInit {
     this.commonserviceService.addNewMovie(this.movieForm.value);
   }
   backToHome() {
-    this.router.navigate(["/home"]);
+    this.router.navigate(["app/home"]);
   }
   deleteMovie(index: any) {
     this.commonserviceService.deleteMovie(index);
