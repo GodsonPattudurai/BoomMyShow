@@ -24,24 +24,21 @@
         </li>
         <li class="nav-item">
           <div class="dropdown">
-            <a class="nav-link" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-map-marker"></span>&nbsp;&nbsp;CHENNAI</a>
+            <a class="nav-link" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-map-marker"></span>&nbsp;&nbsp;{{selectedCity.name}}</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-              <a class="dropdown-item" href="#">Chennai</a>
-              <a class="dropdown-item" href="#">Mumbai</a>
-              <a class="dropdown-item" href="#">Delhi</a>
-              <a class="dropdown-item" href="#">Bengaluru</a>
+              <a *ngFor="let city of cityList" class="dropdown-item" (click)="changeCity(city)">{{city.name}}</a>
             </div>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">OFFERS
+          <a class="nav-link">OFFERS
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">SUPPORT</a>
+          <a class="nav-link">SUPPORT</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"> <span class="fa fa-bell"></span></a>
+            <a class="nav-link"> <span class="fa fa-bell"></span></a>
         </li>
         <li class="nav-item">
           <div class="dropdown">

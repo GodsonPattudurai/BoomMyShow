@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonServiceService {
+  private apiUrl = environment.apiURL;
 
   moviesName: string[] = [];
   searchEnabled: boolean = false;
@@ -12,7 +15,7 @@ export class CommonServiceService {
 
   public updateMessage = new Subject<string>()
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   updateMessages(message: any) {
     this.updateMessage.next(message);
@@ -52,5 +55,18 @@ export class CommonServiceService {
   }
   deleteMovie(index: any) {
     this.movieList.splice(index, 1);
+  }
+
+  save(url: string, data: any) {
+    return this.http.post(this.apiUrl + url, data);
+  }
+  updateById(url: string, id: any, data: any) {
+    return this.http.put(this.apiUrl + url + '/' + id, data);
+  }
+  getAll(url: string) {
+    return this.http.get(this.apiUrl + url);
+  }
+  getById(url: string, id: any) {
+    return this.http.get(this.apiUrl + url + '/' + id);
   }
 }

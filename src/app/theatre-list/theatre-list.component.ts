@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CommonServiceService} from "../services/common-service.service";
 
@@ -9,42 +9,29 @@ import {CommonServiceService} from "../services/common-service.service";
   styleUrls: ['./theatre-list.component.css']
 })
 export class TheatreListComponent implements OnInit {
-
-  // @ts-ignore
-  movieForm: FormGroup;
-  movieList: any;
-
+  cityList: any;
+  selectedCity: any;
+  theaterList: any = [];
+  theaterObj: any = {};
   constructor(private fb: FormBuilder, private router: Router, private commonserviceService: CommonServiceService) { }
 
   ngOnInit() {
-    this.movieList =  this.commonserviceService.getMovieListName();
-    console.log(this.movieList);
-    console.log(JSON.stringify('list---'+this.movieList))
-    this.buildForm();
-  }
-
-  buildForm() {
-    this.movieForm = this.fb.group({
-      url: '',
-      name: '',
-      location: '',
-      date: '',
+    this.commonserviceService.getAll('city?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+      this.cityList = data;
+      this.selectedCity = data[0];
     });
-
+    this.load();
   }
 
-  updateMovieList() {
-    //console.log('value-->'+ JSON.stringify(this.movieForm.value))
-    this.commonserviceService.addNewMovie(this.movieForm.value);
-  }
-  backToHome() {
-    this.router.navigate(["app/home"]);
-  }
-  deleteMovie(index: any) {
-    this.commonserviceService.deleteMovie(index);
-    this.movieList =  this.commonserviceService.getMovieListName();
+  load(){
+    this.commonserviceService.getAll('theater?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+      this.theaterList = data.content;
+    });
   }
 
+  changeCity(d: any) {
+    this.selectedCity = d;
+  }
   displayStyle = "none";
 
   openPopup() {
@@ -52,5 +39,15 @@ export class TheatreListComponent implements OnInit {
   }
   closePopup() {
     this.displayStyle = "none";
+  }
+
+  save(obj: any) {
+    const city = JSON.parse(localStorage.getItem('SELECTED_CITY') || '{}');
+    obj.cityId = city?.id;
+    obj.name= obj.displayName;
+    this.commonserviceService.save('theater', obj).subscribe((data: any) => {
+      this.load();
+      this.closePopup();
+    });
   }
 }
