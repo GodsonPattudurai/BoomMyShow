@@ -34,8 +34,8 @@ export class BookTicketComponent {
     }
   }
 
-  selectSeat() {
-    this.router.navigate(["app/select-seat"]);
+  selectSeat(id:any, calenderId:any) {
+    this.router.navigate(["app/select-seat", id , calenderId]);
   }
 
   getShowCalender(showCalendars: any[]) {
