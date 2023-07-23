@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CommonServiceService} from "../services/common-service.service";
 
 @Component({
   selector: 'app-book-ticket',
@@ -7,8 +8,36 @@ import {Router} from "@angular/router";
   styleUrls: ['./book-ticket.component.css']
 })
 export class BookTicketComponent {
-  constructor(private router: Router) { }
+  showList:any[] = [];
+  moveObj :any = {};
+  showDateList:any[] = [];
+  selectedFilterDate: any = new Date();
+  constructor(public commonserviceService: CommonServiceService, private router: Router, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe( paramMap => {
+      this.commonserviceService.getAll('show?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+        this.showList = data.content.filter((a:any) => a.movieId == parseInt(paramMap.get('movieId') || '0'));
+        this.moveObj = this.showList[0];
+        this.getDatesInRange(new Date(new Date(this.moveObj.startTs).toDateString()), new Date(new Date(this.moveObj.endTs).toDateString()));
+        this.selectedFilterDate = this.showDateList[0];
+      });
+    })
+  }
+  getDatesInRange(startDate :any, endDate :any) {
+    const date = new Date(startDate.getTime());
+    this.showDateList = [];
+    while (date <= endDate) {
+      if (date >= new Date(new Date().toDateString())){
+        this.showDateList.push(new Date(date));
+      }
+      date.setDate(date.getDate() + 1);
+    }
+  }
+
   selectSeat() {
     this.router.navigate(["app/select-seat"]);
+  }
+
+  getShowCalender(showCalendars: any[]) {
+    return showCalendars.filter(a => a.showRunDate == this.selectedFilterDate);
   }
 }

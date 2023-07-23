@@ -42,7 +42,7 @@ const routes: Routes = [
       {path: 'screen-list', component: ScreenListComponent},
       {path: 'theater-list', component: TheatreListComponent},
       {path: 'booking-history', component: BookingHistoryComponent},
-      {path: 'book-ticket', component: BookTicketComponent},
+      {path: 'book-ticket/:movieId', component: BookTicketComponent},
       {path: 'select-seat', component: SelectSeatComponent}
   ]},
   {

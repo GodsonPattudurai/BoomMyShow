@@ -10,7 +10,7 @@
                       <p class="card-text movieDate">{{movie.genere}}</p>
                     <p class="card-text movieDate"><span *ngFor="let aa of movie.movieViewTypes">{{aa.viewTypeName}} </span></p>
                   </div>
-                <button class="btn btn-danger" (click)="bookTicket()">Book tickets</button>
+                <button class="btn btn-danger" (click)="bookTicket(movie.id)">Book tickets</button>
               </div>
           </div>
       </div>

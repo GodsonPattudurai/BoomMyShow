@@ -19,8 +19,8 @@ export class MovieListComponent implements OnInit {
     });
   }
 
-  bookTicket() {
-    this.router.navigate(["app/book-ticket"]);
+  bookTicket(id :any) {
+    this.router.navigate(["app/book-ticket", id]);
   }
 
 }
