@@ -12,56 +12,15 @@
 </nav>
 
 <div class="content" style="width: 80%">
-  <span class="light-grey-text">PRIMIUM -Rs. 160.00</span><br><hr>
-  <div class="seats">
-    <div class="row" *ngFor="let seatNumber of seatlist">
-      <span class="light-grey-text seat-row">{{seatNumber}} &nbsp; &nbsp; </span>
-      <a class="seat pointer">1</a>
-      <a class="seat pointer">2</a>
-      <a class="seat pointer">3</a>
-      <a class="seat pointer">4</a>
-      <a class="seat pointer">5</a>
-      <a class="seat pointer">6</a>
-      <a class="seat pointer">7</a>
-      <a class="seat pointer">8</a>
-      <a class="seat pointer">9</a>
-      <a class="seat pointer">10</a>
-      <a class="seat pointer">11</a>
-      <a class="seat pointer">12</a>
-      <a class="seat pointer">13</a>
-      <a class="seat pointer">14</a>
-      <a class="seat pointer">15</a>
-      <a class="seat pointer">16</a>
-      <a class="seat pointer">17</a>
-      <a class="seat pointer">18</a>
-      <a class="seat pointer">19</a>
-      <a class="seat pointer">20</a>
-    </div>
-  </div>
-  <span class="light-grey-text">BASIC -Rs. 100.00</span><br><hr>
-  <div class="seats">
-    <div class="row" *ngFor="let seatNumber of seatlistBasic">
-      <span class="light-grey-text seat-row">{{seatNumber}} &nbsp; &nbsp; </span>
-      <a class="seat pointer">1</a>
-      <a class="seat pointer">2</a>
-      <a class="seat pointer">3</a>
-      <a class="seat pointer">4</a>
-      <a class="seat pointer">5</a>
-      <a class="seat pointer">6</a>
-      <a class="seat pointer">7</a>
-      <a class="seat pointer">8</a>
-      <a class="seat pointer">9</a>
-      <a class="seat pointer">10</a>
-      <a class="seat pointer">11</a>
-      <a class="seat pointer">12</a>
-      <a class="seat pointer">13</a>
-      <a class="seat pointer">14</a>
-      <a class="seat pointer">15</a>
-      <a class="seat pointer">16</a>
-      <a class="seat pointer">17</a>
-      <a class="seat pointer">18</a>
-      <a class="seat pointer">19</a>
-      <a class="seat pointer">20</a>
+  <div *ngFor="let sO of screenObj.screenSeatTypes" style="padding-top: 10px">
+    <span class="light-grey-text">{{sO.seatTypeName}}</span><br><hr>
+    <div class="seats">
+      <div class="row" *ngFor="let recipient of sO.screenMap.keys()">
+        <span class="light-grey-text seat-row">{{recipient}} &nbsp; &nbsp; </span>
+        <span class="seat" style="cursor: pointer;" [ngClass]="{'active': se.selected}" (click)="selectSeat(se)" *ngFor="let se of sO.screenMap.get(recipient)">
+          {{se.rowNum}}
+        </span>
+      </div>
     </div>
   </div>
   <div class="text-center" style="
