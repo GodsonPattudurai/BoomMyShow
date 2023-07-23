@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   user: IUser;
   cityList: any;
   selectedCity: any = {};
+  userType :any = 'Customer';
   constructor(private router: Router, private cognitoService: CognitoService, private commonserviceService: CommonServiceService) {
     this.user = {} as IUser;
   }
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
       .then((user: any) => {
         this.user = user.attributes;
         this.commonserviceService.getById('user', this.user.email).subscribe((data: any) => {
+          this.userType = data.userTypeName;
           localStorage.setItem('USER', JSON.stringify(data));
         });
       });

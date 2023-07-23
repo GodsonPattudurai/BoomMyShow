@@ -13,7 +13,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ml-md-auto d-md-flex">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="userType == 'Vendor'">
           <div class="dropdown">
             <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-cog"></span>&nbsp;&nbsp;SETTING</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

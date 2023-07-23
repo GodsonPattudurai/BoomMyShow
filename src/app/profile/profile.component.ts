@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
           this.commonserviceService.getById('user', this.user.email).subscribe((data: any) => {
             localStorage.setItem('USER', JSON.stringify(data));
           });
-          //this.router.navigate(['/app/home']);
+          this.router.navigate(['/app/home']);
         }
       });
   }
