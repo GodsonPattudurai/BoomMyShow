@@ -13,6 +13,16 @@
       </div>
     </div>
     <div class="row">
+      <div class="col mb-2">
+        <div class="form-group">
+          <label for="userTypeName">User Type</label>
+          <select class="form-control" id="userTypeName" [(ngModel)]="selectedUserType">
+            <option *ngFor="let a of userTypes" [value]="a.name">{{a.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col d-grid">
         <button type="button" (click)="home()" class="btn btn-sm btn-primary" style="margin-right: 10px">
             Go to Home

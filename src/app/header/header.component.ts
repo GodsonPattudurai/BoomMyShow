@@ -25,16 +25,8 @@ export class HeaderComponent implements OnInit {
     this.cognitoService.getUser()
       .then((user: any) => {
         this.user = user.attributes;
-        const obj = {
-          "id": this.user.email,
-          "name": this.user.name,
-          "userTypeName": 'Customer',
-          "email": this.user.email,
-          "mobile": ''+this.user.phone,
-          "active": 1
-        };
-        this.commonserviceService.save('user', obj).subscribe((data: any) => {
-          localStorage.setItem('USER', JSON.stringify(this.user));
+        this.commonserviceService.getById('user', this.user.email).subscribe((data: any) => {
+          localStorage.setItem('USER', JSON.stringify(data));
         });
       });
   }
