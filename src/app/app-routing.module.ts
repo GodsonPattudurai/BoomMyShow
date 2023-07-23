@@ -13,6 +13,7 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {ScreenListComponent} from "./screen-list/screen-list.component";
 import {ScreenComponent} from "./screen/screen.component";
 import {ShowComponent} from "./show/show.component";
+import {MovieComponent} from "./movie/movie.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
       {path: 'show', component: ShowComponent},
       {path: 'show-list', component: ShowListComponent},
       {path: 'screen', component: ScreenComponent},
+      {path: 'movie', component: MovieComponent},
       {path: 'screen-list', component: ScreenListComponent},
       {path: 'theater-list', component: TheatreListComponent},
       {path: 'booking-history', component: BookingHistoryComponent},

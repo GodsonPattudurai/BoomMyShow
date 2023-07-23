@@ -24,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ScreenComponent } from './screen/screen.component';
 import { ScreenListComponent } from './screen-list/screen-list.component';
 import { ShowComponent } from './show/show.component';
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ShowComponent } from './show/show.component';
     ScreenComponent,
     ScreenListComponent,
     ShowComponent,
+    MovieComponent,
   ],
   imports: [
     BrowserModule,

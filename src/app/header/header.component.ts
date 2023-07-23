@@ -56,4 +56,8 @@ export class HeaderComponent implements OnInit {
   addScreen() {
     this.router.navigate(["app/screen-list"]);
   }
+
+  addMovie() {
+    this.router.navigate(["app/movie"]);
+  }
 }
