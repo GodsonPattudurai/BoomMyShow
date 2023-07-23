@@ -11,12 +11,13 @@ export class SelectSeatComponent  implements OnInit{
   seatlist = ['A', 'B'];
   seatlistBasic = [ 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   noOfTicket = 0;
+  showObj :any = {};
   constructor(public commonserviceService: CommonServiceService, private router: Router, private route: ActivatedRoute) {
     this.route.paramMap.subscribe( paramMap => {
       console.log(paramMap.get('calenderId'));
       console.log(paramMap.get('showId'));
       this.commonserviceService.getById('show', parseInt(paramMap.get('showId') || '0')).subscribe((data: any) => {
-
+          this.showObj = data;
       });
     })
   }

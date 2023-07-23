@@ -2,10 +2,9 @@
   <div class="left-nav-item">
     <div class="nav-item-container"><a href="#back" class="fa fa-angle-left back-logo"></a></div>
     <div class="nav-item-container">
-      Mission Impossible: Dead Reckoning - Part One <small>(U/A)</small><br>
-      <small class="mallname light-grey-text"> INOX: Korum Mall, Eastern Express Highway, Thane</small>
+      {{showObj.movieTitle}} <span style="font-size: 10px; color: beige">{{showObj?.genre}} | {{showObj?.duration}} | {{showObj?.viewTypeName}}</span><br>
+      <small class="mallname light-grey-text"> {{showObj.theaterDisplayName}}</small>
     </div>
-    <div class="showmobile nav-item-container" style="text-overflow:ellipsis !important;font-size:10pt;overflow:hidden;white-space: nowrap;width:80%;"><b> INOX: Korum Mall, Eastern Express Highway, Thane</b></div>
   </div>
   <div class="right-nav-item">
     <div class="nav-item-container small-text num-of-tickets pointer" style="margin-right:40px;"><input type="number" style="width: 40px;" [(ngModel)]="noOfTicket"> Tickets</div>
@@ -73,6 +72,6 @@
     padding: 4px;
 ">All eyes this way please!</div>
   <div class="text-center">
-    <button class="btn btn-danger"  style="width: 200px;" (click)="payTicket()">Pay</button>
+    <button class="btn btn-danger"  style="width: 200px;" (click)="payTicket()">Book</button>
   </div>
 </div>
