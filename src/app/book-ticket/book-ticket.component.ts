@@ -11,7 +11,7 @@ export class BookTicketComponent {
   showList:any[] = [];
   moveObj :any = {};
   showDateList:any[] = [];
-  selectedFilterDate: any = new Date();
+  selectedFilterDate: any;
   constructor(public commonserviceService: CommonServiceService, private router: Router, private route: ActivatedRoute) {
     this.route.paramMap.subscribe( paramMap => {
       this.commonserviceService.getAll('show?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
@@ -27,8 +27,9 @@ export class BookTicketComponent {
     this.showDateList = [];
     while (date <= endDate) {
       if (date >= new Date(new Date().toDateString())){
-        this.showDateList.push(new Date(date));
+
       }
+      this.showDateList.push(new Date(date));
       date.setDate(date.getDate() + 1);
     }
   }
@@ -38,6 +39,8 @@ export class BookTicketComponent {
   }
 
   getShowCalender(showCalendars: any[]) {
-    return showCalendars.filter(a => a.showRunDate == this.selectedFilterDate);
+    return showCalendars.filter(a => {
+        return new Date(new Date(a.showRunDate).toDateString()).getTime() === new Date(this.selectedFilterDate).getTime();
+    });
   }
 }

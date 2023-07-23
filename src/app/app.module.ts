@@ -4,10 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HomeComponent} from "./home/home.component";
-import {MovieListComponent} from "./movie-list/movie-list.component";
 import {LowerBannerSlideComponent} from "./lower-banner-slide/lower-banner-slide.component";
-import {SearchMovieComponent} from "./search-movie/search-movie.component";
-import {SearchMoviePipe} from "./search-movie/search-movie.pipe";
 import {HeaderComponent} from "./header/header.component";
 import {ShowListComponent} from "./show-list/show-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -34,9 +31,6 @@ import { MovieComponent } from './movie/movie.component';
     SignUpComponent,
     HeaderComponent,
     LowerBannerSlideComponent,
-    MovieListComponent,
-    SearchMovieComponent,
-    SearchMoviePipe,
     ShowListComponent,
     HomeComponent,
     SelectSeatComponent,
