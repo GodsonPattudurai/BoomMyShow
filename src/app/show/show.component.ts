@@ -15,6 +15,7 @@ export class ShowComponent implements OnInit{
   seatList: any = [];
   seatTmpList: any = [];
   showObj: any = {};
+  screenObj: any = {};
 
   constructor(private fb: FormBuilder, private router: Router, private commonserviceService: CommonServiceService) { }
 
@@ -40,47 +41,59 @@ export class ShowComponent implements OnInit{
   }
 
   saveScreen(showObj :any, seatTmpList :any) {
+    const movieObj = this.movieList.filter((a :any) => a.id === parseInt(showObj.movieId))[0];
+    const theaterObj = this.theaterList.filter((a :any) => a.id === parseInt(showObj.theaterId))[0];
     const obj = {
-      name: showObj.name,
-      theaterId: parseInt(showObj.theaterId),
-      viewTypeName: showObj.viewTypeName,
-      audioTypeName: showObj.audioTypeName,
-      screenSeatTypes: []
+      "movieId": movieObj.id,
+      "movieTitle": movieObj.title,
+      "genre": movieObj.genere,
+      "languageName": 'English',
+      "thumbnailUrl": movieObj.thumbnailUrl,
+      "trailerUrl": movieObj.trailerUrl,
+      "viewTypeName": '2D',
+      "duration": movieObj.duration,
+      "screenName": showObj.screenName,
+      "theaterId": theaterObj.id,
+      "theaterDisplayName": theaterObj.displayName,
+      "cityId": theaterObj.cityId,
+      "startTs": showObj.startTs + 'T00:00:00',
+      "endTs": showObj.endTs + 'T00:00:00',
+      "showCalendars": showObj.showCalendars
     };
-    const screenSeatTypes :any[] = []
-    if (seatTmpList && seatTmpList.length > 0) {
-      seatTmpList.forEach((seat :any) => {
-        const seats :any[] = [];
-        for (let i = 1; i <= seat.seatColNum; i++) {
-          for (let j = 1; j <= seat.seatRowNum; j++) {
-            seats.push({
-              rowNum: j,
-              columnNum: i
-            })
-          }
-        }
-        screenSeatTypes.push({
-          seatTypeName: seat.seatTypeName,
-          seats: seats
-        })
+    obj.showCalendars.forEach((sCld : any)=> {
+      sCld.startTime = sCld.showRunDate + 'T' + sCld.startTime + ':00';
+      sCld.endTime = sCld.showRunDate + 'T' + sCld.endTime + ':00';
+      sCld.showCalendarPrices = [];
+      this.screenObj.screenSeatTypes.forEach((sCl : any)=> {
+        sCld.showCalendarPrices.push({
+          "screenSeatTypeId": sCl.id,
+          "price": parseInt(sCl.price),
+          "priceBeforeTax": 240,
+          "gst": 60,
+          "cgst": 30,
+          "sgst": 30,
+        });
       });
-    }
-    // @ts-ignore
-    obj.screenSeatTypes = screenSeatTypes;
-    this.commonserviceService.save('screen', obj).subscribe((data: any) => {
-      this.router.navigate(["app/screen-list"]);
+    });
+    this.commonserviceService.save('show', obj).subscribe((data: any) => {
+      this.router.navigate(["app/show-list"]);
     });
   }
 
-  addSeat() {
-    this.seatTmpList.push({
-      seatTypeName: '',
-      seatRowNum: 0,
-      seatColNum: 0
-    })
+  addSeat(obj :any) {
+    if (obj.showCalendars) {
+      obj.showCalendars.push({});
+    } else {
+      obj.showCalendars = [];
+      obj.showCalendars.push({});
+    }
   }
 
   cancelScreen() {
-    this.router.navigate(["app/screen-list"]);
+    this.router.navigate(["app/show-list"]);
+  }
+
+  setScreen(screenName: any) {
+    this.screenObj = this.screenList.filter((a :any) => a.name === screenName)[0];
   }
 }
