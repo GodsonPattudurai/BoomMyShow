@@ -67,6 +67,7 @@ export class ScreenComponent implements OnInit {
     this.commonserviceService.save('screen', obj).subscribe((data: any) => {
       this.router.navigate(["app/screen-list"]);
     });
+    this.router.navigate(["app/screen-list"]);
   }
 
   addSeat() {

@@ -10,6 +10,7 @@ import {CommonServiceService} from "../services/common-service.service";
 })
 export class BookingHistoryComponent implements OnInit {
   theaterList: any = [];
+  showList: any = [];
   constructor(private fb: FormBuilder, private router: Router, private commonserviceService: CommonServiceService) { }
 
   ngOnInit() {
@@ -17,8 +18,15 @@ export class BookingHistoryComponent implements OnInit {
   }
 
   load(){
-    this.commonserviceService.getAll('booking?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
-      this.theaterList = data.content;
+    this.commonserviceService.getAll('show?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+      this.showList = data.content;
+      this.commonserviceService.getAll('booking?pageNo=0&pageSize=100&sortBy=id').subscribe((data: any) => {
+        this.theaterList = data.content;
+        this.theaterList.forEach((a :any)=> {
+          const obj = this.showList.filter((b :any) => b.id === a.showId)[0];
+          a.movieTitle= obj.movieTitle;
+        });
+      });
     });
   }
 }
