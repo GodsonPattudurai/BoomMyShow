@@ -1,0 +1,33 @@
+<div class="row">
+  <h2 class="col-md-10" style="padding: 10px;margin-left: 20px;">Ticket Details</h2>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card-body">
+      <p class="card-text movieDate" style="font-size: 13px;">{{movieObj.genere}}, <span *ngFor="let aa of movieObj.movieViewTypes">{{aa.viewTypeName}}</span>, English</p>
+      <h5 class="">{{movieObj.title}}</h5>
+      <h6 style="padding-top: 20px;">{{theaterObj.name}}</h6>
+      <span>Fri, 25 Oct | 10:15 PM</span>
+      <div class="row" style="padding-top: 20px;">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="inputEmail4" style="font-size: 16px; font-weight: bold;">Screen</label>
+              <div type="email" disabled id="inputEmail4">Screen 1</div>
+            </div>
+          </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputEmail41" style="font-size: 16px; font-weight: bold;">Seat</label>
+            <div type="email" disabled id="inputEmail41">S1 S2</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-left: 10%;">
+        <qrcode [qrdata]="'Your data string'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <img class="card-img-top" [src]="movieObj.thumbnailUrl" alt="Card image cap">
+  </div>
+</div>

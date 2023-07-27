@@ -14,6 +14,7 @@ import {ScreenListComponent} from "./screen-list/screen-list.component";
 import {ScreenComponent} from "./screen/screen.component";
 import {ShowComponent} from "./show/show.component";
 import {MovieComponent} from "./movie/movie.component";
+import {BookingDetailsComponent} from "./booking-details/booking-details.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
       {path: 'theater-list', component: TheatreListComponent},
       {path: 'booking-history', component: BookingHistoryComponent},
       {path: 'book-ticket/:movieId', component: BookTicketComponent},
+      {path: 'booking-details/:bookingId', component: BookingDetailsComponent},
       {path: 'select-seat/:showId/:calenderId', component: SelectSeatComponent}
   ]},
   {

@@ -15,6 +15,7 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {CommonServiceService} from "./services/common-service.service";
 import {HttpClientModule} from "@angular/common/http";
@@ -22,6 +23,7 @@ import { ScreenComponent } from './screen/screen.component';
 import { ScreenListComponent } from './screen-list/screen-list.component';
 import { ShowComponent } from './show/show.component';
 import { MovieComponent } from './movie/movie.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { MovieComponent } from './movie/movie.component';
     SignUpComponent,
     SignInComponent,
     ProfileComponent,
+    BookingDetailsComponent,
     LandingPageComponent,
     ScreenComponent,
     ScreenListComponent,
@@ -51,6 +54,7 @@ import { MovieComponent } from './movie/movie.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    QRCodeModule,
     ReactiveFormsModule,
   ],
   providers: [

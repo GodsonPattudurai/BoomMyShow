@@ -4,5 +4,5 @@ export const environment = {
     userPoolId: 'eu-north-1_cuhwL8iRX',
     userPoolWebClientId: '7r4eqj065i83sglkuh5fichjsk',
   },
-  apiURL: 'http://localhost:8080/'
+  apiURL: 'http://13.127.110.20:8080/'
 };
