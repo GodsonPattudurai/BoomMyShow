@@ -4,26 +4,26 @@
 <div class="row">
   <div class="col-md-6">
     <div class="card-body">
-      <p class="card-text movieDate" style="font-size: 13px;">{{movieObj.genere}}, <span *ngFor="let aa of movieObj.movieViewTypes">{{aa.viewTypeName}}</span>, English</p>
-      <h5 class="">{{movieObj.title}}</h5>
-      <h6 style="padding-top: 20px;">{{theaterObj.name}}</h6>
-      <span>Fri, 25 Oct | 10:15 PM</span>
+      <p class="card-text movieDate" style="font-size: 13px;">{{movieObj.genre}}, {{movieObj.viewTypeName}}, {{movieObj.languageName}}</p>
+      <h5 class="">{{movieObj.movieTitle}}</h5>
+      <h6 style="padding-top: 20px;">{{movieObj.theaterDisplayName}}</h6>
+      <span>{{showCalendar.startTime | date: 'medium'}}</span>
       <div class="row" style="padding-top: 20px;">
           <div class="col-md-6">
             <div class="form-group">
               <label for="inputEmail4" style="font-size: 16px; font-weight: bold;">Screen</label>
-              <div type="email" disabled id="inputEmail4">Screen 1</div>
+              <div type="email" disabled id="inputEmail4">{{movieObj.screenName}}</div>
             </div>
           </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="inputEmail41" style="font-size: 16px; font-weight: bold;">Seat</label>
-            <div type="email" disabled id="inputEmail41">S1 S2</div>
+            <label for="inputEmail41" style="font-size: 16px; font-weight: bold;">No of Ticket</label>
+            <div type="email" disabled id="inputEmail41">{{bookingObj.numberOfTicket}}</div>
           </div>
         </div>
       </div>
       <div style="margin-left: 10%;">
-        <qrcode [qrdata]="'Your data string'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode [qrdata]="movieObj.movieTitle + '|' + movieObj.theaterDisplayName + '|'  + movieObj.screenName + '|' + movieObj.numberOfTicket" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
       </div>
     </div>
   </div>

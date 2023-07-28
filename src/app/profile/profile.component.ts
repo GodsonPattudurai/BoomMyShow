@@ -28,11 +28,11 @@ export class ProfileComponent implements OnInit {
     this.cognitoService.getUser()
       .then((user: any) => {
         this.user = user.attributes;
+        localStorage.setItem('USER', JSON.stringify(this.user));
         if (this.user && this.user.name) {
           this.commonserviceService.getById('user', this.user.email).subscribe((data: any) => {
-            localStorage.setItem('USER', JSON.stringify(data));
+            localStorage.setItem('USER_ROLE', JSON.stringify(data));
           });
-          this.router.navigate(['/app/home']);
         }
       });
   }

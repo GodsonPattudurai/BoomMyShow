@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CommonServiceService} from "../services/common-service.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CognitoService, IUser} from "../cognito.service";
 
 @Component({
   selector: 'app-select-seat',
@@ -16,7 +17,9 @@ export class SelectSeatComponent  implements OnInit, AfterViewInit{
   showCalendarPrices: any = {};
   showId = 0;
   showCalendarId = 0;
-  constructor(public commonserviceService: CommonServiceService, private router: Router, private route: ActivatedRoute) {
+  user: IUser;
+  constructor(public commonserviceService: CommonServiceService, private cognitoService: CognitoService, private router: Router, private route: ActivatedRoute) {
+    this.user = {} as IUser;
     this.route.paramMap.subscribe( paramMap => {
       this.showId = parseInt(paramMap.get('showId') || '0');
       this.showCalendarId = parseInt(paramMap.get('calenderId') || '0');
@@ -30,7 +33,14 @@ export class SelectSeatComponent  implements OnInit, AfterViewInit{
         });
         this.showCalendarPrices = this.showObj.showCalendars.filter((a:any) => a.id === parseInt(paramMap.get('calenderId') || '0'))[0];
       });
-    })
+    });
+    this.cognitoService.getUser()
+      .then((user: any) => {
+        this.user = user.attributes;
+        this.commonserviceService.getById('user', this.user.email).subscribe((data: any) => {
+          localStorage.setItem('USER', JSON.stringify(data));
+        });
+      });
   }
   groupBy(list :any, keyGetter :any) {
     const map  = new Map();
@@ -73,21 +83,22 @@ export class SelectSeatComponent  implements OnInit, AfterViewInit{
     });
     console.log(selectedSeat);
     const obj = {
-      "userId": user.id,
+      "userId": user.email,
       "showId": this.showId,
       "showCalendarId": this.showCalendarId,
       "screenSeatTypeId": selectedSeat[0].screenSeatTypeId,
       "numberOfTicket": this.noOfTicket,
-      "unitPrice": 0,
+      "unitPrice": 200,
       "totalPrice": priceTotal,
-      "priceBeforeTax": 0,
-      "gst": 0,
-      "cgst": 0,
-      "sgst": 0,
+      "priceBeforeTax": 360,
+      "gst": 40,
+      "cgst": 20,
+      "sgst": 20,
+      "status": "PENDING",
       "seatIds": seatIds
-    }
+    };
     this.commonserviceService.save('booking', obj).subscribe((data: any) => {
-      this.router.navigate(['/app/booking-history']);
+      this.router.navigate(["app/booking-details", data]);
     });
   }
 
